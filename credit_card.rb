@@ -3,18 +3,27 @@ require 'json'
 
 class CreditCard
   # TODO: mixin the LuhnValidator using an 'include' statement
+  include LuhnValidator
 
   # instance variables with automatic getter/setter methods
   attr_accessor :number, :expiration_date, :owner, :credit_network
 
   def initialize(number, expiration_date, owner, credit_network)
     # TODO: initialize the instance variables listed above (do not forget the '@')
+    @number = number
+    @expiration_date = expiration_date
+    @owner = owner
+    @credit_network = credit_network
   end
 
   # returns json string
   def to_json
     {
       # TODO: setup the hash with all instance vairables to serialize into json
+      @number => number,
+      @expiration_date => expiration_date,
+      @owner => owner,
+      @credit_network => credit_network
      }.to_json
   end
 
@@ -41,3 +50,8 @@ class CreditCard
     #       Credit cards with identical information should produce the same hash.
   end
 end
+
+
+number = 4532705201597369
+card = CreditCard.new(number, nil, nil, nil)
+puts card.validate_checksum
