@@ -11,8 +11,8 @@ module LuhnValidator
       if index % 2 == 0
       	sum_all_digits += number 
       else
-        two_digit_number = (number * 2)
-        sum_all_digits += (two_digit_number / 10 + two_digit_number % 10)
+        two_digit_number = number * 2
+        sum_all_digits += two_digit_number / 10 + two_digit_number % 10
       end
     }
     sum_all_digits % 10 == 0 ? true : false
